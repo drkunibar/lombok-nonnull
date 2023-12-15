@@ -21,10 +21,10 @@
         <executions>
           <execution>
             <id>unpack-lombok</id>
-            <phase>generate-sources</phase>
             <goals>
               <goal>unpack</goal>
             </goals>
+            <phase>generate-sources</phase>
             <configuration>
               <artifactItems>
                 <artifactItem>
@@ -45,10 +45,10 @@
         <executions>
           <execution>
             <id>unshade-lombok</id>
-            <phase>compile</phase>
             <goals>
               <goal>run</goal>
             </goals>
+            <phase>compile</phase>
             <configuration>
               <target>
                 <copy includeemptydirs="false" todir="${project.build.directory}/classes/">
