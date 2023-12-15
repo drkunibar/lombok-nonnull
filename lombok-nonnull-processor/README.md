@@ -16,6 +16,25 @@ The current Version supports Java 8
 - [Configure Warning](#configure-warning)
 <!-- /TOC -->
 
+## Install
+
+You can use it as a Maven dependency
+
+```xml
+    <dependencies>
+        <dependency>
+            <groupId>io.github.drkunibar</groupId>
+            <artifactId>lombok-nonnull</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+    </dependencies>
+```
+
 
 ## How it works
 
