@@ -8,6 +8,7 @@
   </parent>
   <artifactId>lombok-nonnull</artifactId>
   <packaging>jar</packaging>
+  <name>lombok-nonnull :: processor</name>
   <distributionManagement>
     <repository>
       <id>ossrh</id>
