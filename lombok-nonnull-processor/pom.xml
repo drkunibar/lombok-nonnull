@@ -9,6 +9,7 @@
   <artifactId>lombok-nonnull</artifactId>
   <packaging>jar</packaging>
   <name>lombok-nonnull :: processor</name>
+  <description>Lombok extension which generates Nonnull-Check-Blocks</description>
   <distributionManagement>
     <repository>
       <id>ossrh</id>

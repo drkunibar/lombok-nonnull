@@ -8,6 +8,7 @@
   </parent>
   <artifactId>lombok-nonnull-unshaded</artifactId>
   <name>lombok-nonnull :: lombok unshaded</name>
+  <description>Unshaded Lombok classes</description>
   <dependencies>
     <dependency>
       <groupId>org.projectlombok</groupId>
