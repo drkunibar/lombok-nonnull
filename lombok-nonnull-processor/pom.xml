@@ -4,31 +4,35 @@
   <parent>
     <groupId>io.github.drkunibar</groupId>
     <artifactId>lombok-nonnull-parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.1-SNAPSHOT</version>
   </parent>
   <artifactId>lombok-nonnull</artifactId>
   <packaging>jar</packaging>
   <name>lombok-nonnull :: processor</name>
+  <description>Lombok extension which generates Nonnull-Check-Blocks</description>
   <distributionManagement>
     <repository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <id>Sonatype Central</id>
+      <name>Sonatype Release Repository</name>
+      <url>https://central.sonatype.com/</url>
     </repository>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
   </distributionManagement>
   <properties>
     <download.dir>${project.build.directory}/download</download.dir>
     <javac.version>1.6.0.18</javac.version>
     <javac.jar>javac-${javac.version}.jar</javac.jar>
     <javac.path>${download.dir}/${javac.jar}</javac.path>
+    <maven.compiler.release>8</maven.compiler.release>
   </properties>
   <dependencies>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <version>3.0.2</version>
     </dependency>
     <!-- Only for compilation -->
     <dependency>
@@ -53,36 +57,29 @@
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
-    <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>jsr305</artifactId>
-      <version>3.0.2</version>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
     <!-- Unit-Tests -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.10.1</version>
+      <version>5.13.4</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-params</artifactId>
-      <version>5.10.1</version>
+      <version>5.13.4</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.10.1</version>
+      <version>5.13.4</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
-      <version>3.24.2</version>
+      <version>3.27.3</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -92,7 +89,7 @@
         <!-- fetch the javac from lombok -->
         <groupId>com.googlecode.maven-download-plugin</groupId>
         <artifactId>download-maven-plugin</artifactId>
-        <version>1.7.1</version>
+        <version>1.13.0</version>
         <executions>
           <execution>
             <goals>
@@ -111,7 +108,7 @@
         <!-- put the fetched javac to the local repository -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-install-plugin</artifactId>
-        <version>3.1.1</version>
+        <version>3.1.4</version>
         <executions>
           <execution>
             <id>install-javac-tools</id>
@@ -204,7 +201,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.3.1</version>
+        <version>3.6.0</version>
         <configuration>
           <consoleOutput>true</consoleOutput>
           <linkXRef>false</linkXRef>
@@ -235,7 +232,7 @@
       <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
-        <version>4.3</version>
+        <version>4.6</version>
         <executions>
           <execution>
             <id>update-license</id>
@@ -262,7 +259,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.2.2</version>
+        <version>3.5.3</version>
         <configuration>
           <!-- do not use 'classes' - only the JAR - cause we rename internal classes from *.class to *.SCL.lombok -->
           <classesDirectory>${basedir}/target/${project.build.finalName}.jar</classesDirectory>
@@ -278,7 +275,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
-            <version>2.2.1</version>
+            <version>3.3.1</version>
             <configuration>
               <excludes>
                 <!-- Exclude shadowed classes -->
@@ -298,7 +295,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.9.1</version>
+            <version>3.11.2</version>
             <configuration>
               <additionalparam>-Xdoclint:none</additionalparam>
               <!-- Exclude shadowed classes -->
@@ -316,7 +313,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.5</version>
+            <version>3.2.8</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
@@ -334,7 +331,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>flatten-maven-plugin</artifactId>
-            <version>1.5.0</version>
+            <version>1.7.2</version>
             <configuration>
               <flattenDependencyMode>all</flattenDependencyMode>
               <flattenMode>ossrh</flattenMode>
@@ -351,14 +348,13 @@
             </executions>
           </plugin>
           <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>1.6.13</version>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>0.8.0</version>
             <extensions>true</extensions>
             <configuration>
-              <serverId>ossrh</serverId>
-              <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>false</autoReleaseAfterClose>
+              <publishingServerId>central</publishingServerId>
+              <autoPublish>true</autoPublish>
             </configuration>
           </plugin>
         </plugins>

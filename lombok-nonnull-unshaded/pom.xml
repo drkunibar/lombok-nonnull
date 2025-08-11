@@ -4,10 +4,11 @@
   <parent>
     <groupId>io.github.drkunibar</groupId>
     <artifactId>lombok-nonnull-parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.1-SNAPSHOT</version>
   </parent>
   <artifactId>lombok-nonnull-unshaded</artifactId>
   <name>lombok-nonnull :: lombok unshaded</name>
+  <description>Unshaded Lombok classes</description>
   <dependencies>
     <dependency>
       <groupId>org.projectlombok</groupId>
