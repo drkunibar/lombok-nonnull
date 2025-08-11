@@ -232,6 +232,34 @@ public class Data {
 }
 ```
 
+## Delombok
+
+If you use Maven to delombok your soure, make sure that the 'lombok-nonnull' dependency ist also
+set to the plugin
+
+```xml
+<plugin>
+  <groupId>org.projectlombok</groupId>
+  <artifactId>lombok-maven-plugin</artifactId>
+  <version>1.18.20.0</version>
+  <executions>
+    <execution>
+      <phase>generate-sources</phase>
+      <goals>
+        <goal>delombok</goal>
+      </goals>
+    </execution>
+  </executions>
+  <dependencies>
+      <dependency>
+        <groupId>io.github.drkunibar</groupId>
+        <artifactId>lombok-nonnull</artifactId>
+        <version>1.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+</plugin>
+```
+
 ## What does not work
 
 ```java
@@ -298,3 +326,19 @@ your `lombok.config`
 ```java
 lombok.javax.nonnull.ignoreUnsupportedTypes = true
 ```
+
+# Changelog
+
+## 1.1.0
+
+- Change POM for new Maven deployment process
+- Change scope of JSR305 dependency
+- Update to Lombok 1.18.38
+
+## 1.0.1
+
+-  Enhance POMs because Sonatype rules
+
+## 1.0.0
+
+- Initial version
